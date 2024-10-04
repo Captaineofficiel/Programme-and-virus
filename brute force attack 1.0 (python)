@@ -1,0 +1,25 @@
+import itertools
+import string
+
+def brute_force_password(password):
+    # Définir l'ensemble de caractères à utiliser (ici, lettres minuscules)
+    characters = string.ascii_lowercase  # 'abcdefghijklmnopqrstuvwxyz'
+    
+    # Essayer toutes les longueurs possibles de 1 à la longueur du mot de passe
+    for length in range(1, len(password) + 1):
+        # Générer toutes les combinaisons possibles pour la longueur donnée
+        for guess in itertools.product(characters, repeat=length):
+            # Joindre les caractères pour former un mot de passe potentiel
+            guess = ''.join(guess)
+            print(f"Tentative : {guess}")  # Afficher la tentative actuelle
+            
+            # Vérifier si la tentative correspond au mot de passe
+            if guess == password:
+                print(f"Mot de passe trouvé : {guess}")
+                return guess
+    print("Mot de passe non trouvé.")
+    return None
+
+# Exemple d'utilisation
+password_to_crack = "abc"  # Remplacez cela par le mot de passe que vous voulez déchiffrer
+brute_force_password(password_to_crack)
